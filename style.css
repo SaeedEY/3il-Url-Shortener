@@ -1,0 +1,29 @@
+body{
+	margin-left: 20%;
+	margin-top: 5%;
+	background: url('image/background2.jpg');
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+.myframe{
+	
+}
+.input{
+	text-align: center;
+	margin-left: 5px;
+	width: 65%;
+	max-width: 70%;
+	min-width: 60%;
+	height: 6%;
+	max-height: 7%;
+	min-height: 6%;
+	border-style: groove;
+	border-radius: 5px;
+	padding: 5px;
+	background: rgba(255,255,255,0.4);
+	border-color: darkturquoise;
+}
+
+.footer{
+	margin-top: 15%;
+}

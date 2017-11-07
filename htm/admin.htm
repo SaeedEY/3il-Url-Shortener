@@ -1,0 +1,51 @@
+<?php 
+$delete = (strpos($_SERVER['REQUEST_URI'],'?delete') != 0)?true:false;
+$tok = substr($_SERVER['QUERY_STRING'],9);
+$pa1 = explode('-',$tok)[0];
+if(strpos($pa1,'/') != false){
+	$pa1 = explode('/',$pa1)[count(explode('/',$pa1))-1];
+}
+$pa2 = explode('-',$tok)[1];
+if($us->createToken($pa1) == $pa2 and $delete){
+	echo "<script>setTimeout(function(){ window.location.href = '".(($delete == true)?explode('?',$_SERVER['REQUEST_URI'])[0]:$_SERVER['REQUEST_URI'])."'; } , 0100);alert('URL Deleted');</script>";
+	unlink($us->DATA_FOLDER.$pa1);
+}
+if(isset($_REQUEST['json'])){
+	die($us->loadURL($pa1,'json'));
+}else{
+?>
+
+<!DOCTYPE>
+<html>
+	<head>
+		<title>URL Shortener Manager</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="utf-8">
+	<meta http-equiv="refresh" content="60">
+	</head>
+	<body>
+	<div class="screen">
+		<div class="topmenu">
+			<h2>URL Shortener Managers</h2>
+			<hr>
+			<h5><span style='font-family:arial'>No Advertisement! No Price! No UserTrack! No Time Limit!<i>[!]Just Make The Link Shorter[!]</i></span></h5>
+			<h5><b>Owner</b> : <a href="https://SaeedEY.com">SaeedEY.com</a></h5>
+			<p>If You like to Support me , You can Contact me <a href='https://SaeedEY.com/#Contact'>Here</a> or Pay Anonymously by scan <a href='https://saeedey.com/images/bitcoin.png'>This QrCode Image</a> ;</p>
+		</div>
+		<div class="container">
+			<div class="myframe">
+				<br><br>
+				<h3><a href='?delete' >Delete My Link</a></h3><br>
+				Total Clicked : <span style="font-size:25px;"><?php echo $us->loadURL($pa1,'read');?></span>
+				</div>
+				<input type="hidden" name="token" value="<?php echo $short_link.':'.$us->createToken($short_link);?>"/>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<hr>
+		<h5>All Rights Reserved to &copy; <a href="https://SaeedEY.com/">Saeed EY</a></h5>
+	</div>
+	</body>
+</html>
+<?php }?>

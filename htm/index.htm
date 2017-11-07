@@ -1,0 +1,68 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>URL Shortener</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta property="og:title" content="<?php echo $_SERVER['HTTP_HOST'];?> Url Shortener">
+	<meta property="og:image" content="https://SaeedEY.com/images/icons/favicon.png">
+	<meta property="og:site_name" content="'<?php echo $_SERVER['HTTP_HOST'];?>' URL Shoretener">
+	<meta property="og:description" content="'<?php echo $_SERVER['HTTP_HOST'];?>' Url Shortener is Web Tool to let you make your Links Shorter.">
+	<meta property="twitter:image" content="https://saeedey.com/images/icons/favicon.png">
+	<meta name="twitter:description" content="'<?php echo $_SERVER['HTTP_HOST'];?>' Url Shortener is Web Tool to let you make your Links Shorter.">
+	<meta name="twitter:app:name:iphone" content="Telegram Messenger">
+	<meta name="twitter:app:name:ipad" content="Telegram Messenger">
+	<meta name="twitter:app:name:googleplay" content="Telegram">
+	<meta property="description" content="'<?php echo $_SERVER['HTTP_HOST'];?>' Url Shortener is Web Tool to let you make your Links Shorter.">
+	<meta charset="utf-8">
+	<?php if($short_link == null):?><meta http-equiv="refresh" content="60"><?php endif;?>
+	</head>
+	<body>
+	<div class="screen">
+		<div class="topmenu">
+			<h2>URL Shortener</h2>
+			<hr>
+			<h5><span style='font-family:arial'>No Advertisement!&nbsp;&nbsp;No Price!&nbsp;&nbsp;No User&nbsp;Tracking!&nbsp;&nbsp;No Time Limit!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i>[!]Just Make The Link Shorter[!]</i></span></h5>
+			<h5><b>Owner</b> : <a href="https://SaeedEY.com">SaeedEY.com</a></h5>
+			<p>If You like to Support me , You can Contact me <a href='https://SaeedEY.com/#Contact'>Here</a> or Pay Anonymously by scan <a href='https://saeedey.com/images/bitcoin.png'>This QrCode Image</a> ;</p>
+		</div>
+		<script type="text/javascript">
+			function SimpleMode(){
+				alert('Simple Mode ON');
+			}
+			function ProMode(){
+				alert('Not Activated Yet');
+				document.getElementById('simple').checked = true;
+			}
+		</script>
+		<div class="container">
+			<div class="myframe">
+				<?php if($short_link != null){?><br><br>
+					<span style='color:white;background:green;padding:5px;'>Thanks for Using our URL Shortener Tool, Here is Your Short Link:</span><br><br>
+					Your Shorten Link:<a href="http://<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link;?>">
+					<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link;?></a> <br>
+					Your Manage Link:<a href="http://<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?>">
+					<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?></a> <br>
+					Count Total Click:<a href="http://<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?>?json">
+					<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?>?json</a> <br>
+					Delete Short Link:<a href="http://<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?>?delete">
+					<?php echo $_SERVER['HTTP_HOST'].'/'.$short_link.'-'.$us->createToken($short_link);?>?delete</a> 
+				<?php }else{?>
+				<form method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
+					<br><br>
+					<?php /*&nbsp;&nbsp;Simple Mode<input type="radio" name="type" id="simple" onclick="SimpleMode()" value="simple" checked>&nbsp;&nbsp;&nbsp;&nbsp;
+					Pro Mode<input type="radio" name="type" value="pro" id='pro' onclick="ProMode()"> */?>
+					<br><br>
+					<input type="url" class="input" name="url" placeholder="Enter Your URL here" />
+					<input type="hidden" name="token" value="<?php echo $us->createToken();?>"/>
+				</form>
+				<?php }?>
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<hr>
+		<h5>All Rights Reserved to &copy; <a href="https://SaeedEY.com/">Saeed EY</a></h5>
+	</div>
+	</body>
+</html>
